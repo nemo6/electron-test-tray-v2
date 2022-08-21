@@ -1,0 +1,58 @@
+<meta charset="UTF-8">
+<title>Nemo</title>
+
+<h1>Hello World!</h1>
+
+We are using Node.js <span id="node-version"></span>,
+Chromium <span id="chrome-version"></span>,
+and Electron <span id="electron-version"></span>.
+
+<br><br>
+
+<input type="text" id="name">
+
+<p id="results">content:<br></p>
+
+<input type="text" id="file"><button onclick="create()">File</button>
+
+<!-- <p id="output">Click it to see the effect in this interface.</p> -->
+
+<!-- <p>Click to show <button id="new-notification">New Notification</button></p> -->
+
+<!-- <script src="./renderer.js"></script> -->
+
+<script>
+
+const fs = require("fs")
+
+function create() {
+
+	let val = document.querySelector("#file").value
+
+	if ( val != "" )
+	fs.writeFileSync( val + ".txt", "", "utf8" );
+
+}
+
+document.querySelector("#name").oninput = function(e) {
+
+	document.querySelector("#results").innerHTML += this.value + "<br>"
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+
+	const replaceText = (selector, text) => {
+	const element = document.getElementById(selector)
+	if (element) element.innerText = text
+	}
+
+	for (const type of ['chrome', 'node', 'electron']) {
+	replaceText(`${type}-version`, process.versions[type])
+	}
+
+	let content = JSON.stringify(fs.readdirSync(__dirname),null,2)
+	fs.writeFileSync( "test.txt", content, "utf8" );
+
+})
+
+</script>

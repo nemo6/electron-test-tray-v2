@@ -1,0 +1,19 @@
+{
+  "name": "",
+  "version": "",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder"
+  },
+  "build": {
+    "appId": "com.electron.app",
+    "win": {
+      "target": "portable"
+    }
+  },
+  "dependencies": {
+    "electron": "^20.0.3"
+  }
+}
