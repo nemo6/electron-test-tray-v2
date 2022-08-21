@@ -1,2 +1,2 @@
 # electron-test-tray-v2
-test
+npm i electron@20.0.3
